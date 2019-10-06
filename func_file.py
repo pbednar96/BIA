@@ -9,7 +9,7 @@ import show_3D_graph, static_data
 
 
 def ackley(input_data):
-    # hm, it is probably right
+    # ok
     a = 20
     b = 0.2
     c = 2 * np.pi
@@ -27,9 +27,9 @@ def ackley(input_data):
 
 
 def levy(input_data):
-    # nope
+    # also bad
     sum1 = 0
-    for i in input_data:
+    for i in range(len(input_data)):
         w = 1 + ((input_data[i] - 1) / 4)
         wd = 1 + ((input_data[len(input_data) - 1] - 1) / 4)
         sum1 = sum1 + ((((w - 1) ** 2) * (1 + 10 * math.sin(math.pi * w + 1))) + (((wd - 1) ** 2) * (
@@ -65,8 +65,8 @@ def schwefel(input_data):
 def zakharov(input_data):
     # bad
     sum1 = [item ** 2 for item in input_data]
-    sum2 = [0.5 * i + 1 * item for i, item in enumerate(input_data)]
-    sum3 = [0.5 * i + 1 * item for i, item in enumerate(input_data)]
+    sum2 = [(0.5 * i + 1 * item) ** 2 for i, item in enumerate(input_data)]
+    sum3 = [(0.5 * i + 1 * item) ** 4 for i, item in enumerate(input_data)]
     result = sum(sum1) + sum(sum2) + sum(sum3)
     return result
 
