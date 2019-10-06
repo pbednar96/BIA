@@ -85,5 +85,23 @@ def michalewicz(input_data):
         sum1 = sum1 + ((math.sin(item)) * (((math.sin((i + 1) * item ** 2)) / math.pi) ** (2 * m)))
     return -(sum1)
 
+def return_value_function(input_data,name_function):
+    if name_function == "ackley":
+        return ackley(input_data)
+    elif name_function == "levy":
+        return levy(input_data)
+    elif name_function == "griewank":
+        return griewank(input_data)
+    elif name_function == "schwefel":
+        return schwefel(input_data)
+    elif name_function == "zakharov":
+        return zakharov(input_data)
+    elif name_function == "sphere":
+        return sphere(input_data)
+    elif name_function == "michalewicz":
+        return michalewicz(input_data)
+    else:
+        return 0
+
 
 #show_3D_graph.show_graph("sphere")
