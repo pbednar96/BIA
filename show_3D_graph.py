@@ -6,7 +6,7 @@ import time
 from matplotlib.animation import FuncAnimation
 
 
-#need rework
+# need rework
 
 def show_graph(name_function):
     # MY IMPORT
@@ -64,9 +64,6 @@ def show_both_graph(name_function, list_points):
             ax.scatter(list_points[i][0], list_points[i][1], list_points[i][2])
         return ax
 
-    ani = FuncAnimation(fig, animate, frames= len(list_points), interval=200)
+    ani = FuncAnimation(fig, animate, frames=len(list_points), interval=200)
 
     plt.show()
-
-
-
