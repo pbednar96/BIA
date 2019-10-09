@@ -32,9 +32,9 @@ def levy(input_data):
     for i in range(len(input_data)):
         w = 1 + ((input_data[i] - 1) / 4)
         wd = 1 + ((input_data[len(input_data) - 1] - 1) / 4)
-        sum1 = sum1 + ((((w - 1) ** 2) * (1 + 10 * math.sin(math.pi * w + 1))) + (((wd - 1) ** 2) * (
+        sum1 = sum1 + ((((w - 1) ** 2) * (1 + (10 * math.sin(math.pi * w + 1))**2)) + (((wd - 1) ** 2) * (
                 1 + math.sin(2 * math.pi * wd) ** 2)))
-    return math.sin(math.pi * (1 + (input_data[0] - 1) / 4)) ** 2 + sum1
+    return (math.sin(math.pi * (1 + (input_data[0] - 1) / 4)) ** 2) + sum1
 
 
 def griewank(input_data):
