@@ -8,6 +8,8 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
     generated_x = np.random.normal(mux, sigma, size)
     generated_y = np.random.normal(muy, sigma, size)
     tmp = func_file.return_value_function([mux, muy], name_function)
+    cord_X = generated_x[0]
+    cord_Y = generated_y[0]
     for i, j in zip(generated_x, generated_y):
         min = func_file.return_value_function([i, j], name_function)
         list_points.append([i, j, min])
