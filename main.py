@@ -7,7 +7,7 @@ NUM_GENERETED_POINTS = 20
 
 def main():
     print("BIA  2019/2020 - BED0111")
-    
+
     # (2/2)
     # changed and no tested
     # as graph with minumum point + animation points
