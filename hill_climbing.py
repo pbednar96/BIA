@@ -22,6 +22,7 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
     print("X: " + str(cord_X))
     print("Y: " + str(cord_Y))
     print("VALUE: " + str(tmp))
+    print("")
 
 
     if iterat == 1:

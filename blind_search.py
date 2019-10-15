@@ -26,6 +26,7 @@ def blind_search(name_function, size_random_search):
     print("X: " + str(cord_X))
     print("Y: " + str(cord_Y))
     print("VALUE: " + str(tmp))
+    print("")
 
     return point_list
 
