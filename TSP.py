@@ -1,10 +1,7 @@
 import numpy as np
 import math
 import random
-import sys
-import time
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 
 FILENAME = "datasets/tps_dataset.txt"
 
