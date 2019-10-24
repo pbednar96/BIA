@@ -4,6 +4,7 @@ import random
 import sys
 import time
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 FILENAME = "datasets/tps_dataset.txt"
 
@@ -98,9 +99,7 @@ def final_population(num_first_population, num_generations, matrix):
     return list_population
 
 
-def get_minimum_dist_in_population(list_population):
-    list_nodes = get_list_values(FILENAME)
-    matrix = create_matrix(list_nodes)
+def get_best_route_in_population(list_population, matrix):
     min = 90000
     best_route = []
     for i in list_population:
@@ -109,7 +108,7 @@ def get_minimum_dist_in_population(list_population):
             min = dist
             best_route = i
     print("")
-    print(min)
+    print("Min:" + str(min))
     print(best_route)
     return best_route
 
@@ -129,8 +128,13 @@ def show_final_graph(final_route, filename):
     plt.show()
 
 
-list_x = get_list_values(FILENAME)
-matrix = create_matrix(list_x)
-final_list = final_population(10, 1000000, matrix)
-final_route = get_minimum_dist_in_population(final_list)
-show_final_graph(final_route, FILENAME)
+def main():
+    list_x = get_list_values(FILENAME)
+    matrix = create_matrix(list_x)
+    final_list = final_population(40, 20000, matrix)
+    final_route = get_best_route_in_population(final_list, matrix)
+    show_final_graph(final_route, FILENAME)
+
+
+if __name__ == "__main__":
+    main()
