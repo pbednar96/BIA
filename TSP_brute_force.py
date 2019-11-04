@@ -1,6 +1,6 @@
 from datetime import datetime
 
-
+#4/4
 def permutation(list_data):
     list_perm = []
     if len(list_data) == 1:
@@ -16,7 +16,7 @@ def permutation(list_data):
 def main():
     data = [1, 2, 3]
     start_time = datetime.now()
-    print(permutation(data))
+    permutation(data)
     end_time = datetime.now()
     print(str(end_time - start_time))
 
