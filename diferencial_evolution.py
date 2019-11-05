@@ -3,6 +3,7 @@ import numpy as np
 
 import static_data
 import func_file
+from show_3D_graph import show_graph_with_points
 
 DIMENSIONS = 2
 POPSIZE = 20
@@ -10,16 +11,13 @@ MUTATION = 0.5
 GENERATIONS = 100
 FUNC = "ackley"
 SCALING_VECTOR = 0.5
-CR = 0.5
-
-
-# CR, crossover_operation,
+CR = 0.6
 
 def de(func, dimension, popsize, generations, scaling_vector):
     population = generate_first_popilation(func, popsize, dimension)
-
-    while generations > 0:
-        next_pop = []
+    num_generation = 0
+    while generations > num_generation:
+        new_population = []
         for i in range(0, popsize):
             parent = random.sample(range(0, popsize), 3)
 
@@ -27,15 +25,21 @@ def de(func, dimension, popsize, generations, scaling_vector):
             mutation_v = mutation_pop(parents, dimension, scaling_vector)
 
             child = []
+            for index in range(dimension):
+                r = random.uniform(0, 1)
+                if r <= CR:
+                    child.append(mutation_v[index])
+                else:
+                    child.append(population[i][index])
 
             if func_file.return_value_function(child, func) < func_file.return_value_function(population[i], func):
-                next_pop.append(child)
+                new_population.append(child)
             else:
-                next_pop.append(population[i])
+                new_population.append(population[i])
 
-        population = next_pop
-        generations -= 1
-        print(generations)
+        population = new_population
+        num_generation += 1
+        print(num_generation)
         print(population)
     return population
 
@@ -57,7 +61,8 @@ def mutation_pop(parents, dimension, scaling_vector):
 
 
 def main():
-    de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
+    final_points = de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
+    show_graph_with_points(FUNC, final_points)
 
 
 if __name__ == "__main__":
