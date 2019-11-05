@@ -1,7 +1,7 @@
 import random
 import numpy as np
+
 import static_data
-import random
 import func_file
 
 DIMENSIONS = 2
