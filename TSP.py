@@ -43,8 +43,8 @@ def mutation(x):
     r = random.uniform(0, 1)
     if r < 0.5:
         while True:
-            m = random.randint(1, 19)
-            n = random.randint(1, 19)
+            m = random.randint(1, len(x) - 1)
+            n = random.randint(1, len(x) - 1)
             if m != n:
                 break
         tmp = x[n]
@@ -57,7 +57,7 @@ def cross_population_gen(list_A, list_B):
     result_list = []
     for i in [0, 1, 2, 3, 4, 5, 6, 13, 14, 15, 16, 17, 18, 19]:
         result_list.append(list_A[i])
-    for i in range(20):
+    for i in range(len(list_A)):
         if list_B[i] not in result_list:
             result_list.insert(7, list_B[i])
     result_list = mutation(result_list)

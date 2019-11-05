@@ -10,11 +10,13 @@ MUTATION = 0.5
 GENERATIONS = 100
 FUNC = "ackley"
 SCALING_VECTOR = 0.5
+CR = 0.5
 
 
-def de(func, mutation, dimension, popsize, generations, scaling_vector):
+# CR, crossover_operation,
+
+def de(func, dimension, popsize, generations, scaling_vector):
     population = generate_first_popilation(func, popsize, dimension)
-    print(population)
 
     while generations > 0:
         next_pop = []
@@ -26,14 +28,8 @@ def de(func, mutation, dimension, popsize, generations, scaling_vector):
 
             child = []
 
-            r = random.uniform(0, 1)
-            if r < mutation:
-                child.append(mutation_v)
-            else:
-                child.append(population[i])
-
             if func_file.return_value_function(child, func) < func_file.return_value_function(population[i], func):
-                next_pop.append(child[0])
+                next_pop.append(child)
             else:
                 next_pop.append(population[i])
 
@@ -54,13 +50,14 @@ def generate_first_popilation(func, popSize, dimension):
 
 def mutation_pop(parents, dimension, scaling_vector):
     mutation_v = []
-    for j in range(0, dimension ):
+    # print(parents)
+    for j in range(0, dimension):
         mutation_v.append(parents[0][j] + scaling_vector * (parents[1][j]) - parents[2][j])
     return mutation_v
 
 
 def main():
-    de(FUNC, MUTATION, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
+    de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
 
 
 if __name__ == "__main__":

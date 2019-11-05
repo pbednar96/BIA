@@ -1,7 +1,7 @@
 import func_file, static_data, show_3D_graph, blind_search, hill_climbing
 from simulated_annealing import simulated_annealing
 
-FUNCTION = "griewank"
+FUNCTION = "ackley"
 NUM_GENERETED_POINTS = 20
 
 
@@ -18,11 +18,11 @@ def main():
 
     # (4/4)
     # hill climbing with recursion
-    # x = hill_climbing.hill_climbing(FUNCTION, 5, 5, 0.6, 50, 15)
-    # show_3D_graph.show_graph_with_point(FUNCTION,x)
+    x = hill_climbing.hill_climbing(FUNCTION, 5, 5, 0.8, 50, 15)
+    show_3D_graph.show_graph_with_point(FUNCTION,x)
     # simulated annealing with temperature
-    # x = simulated_annealing(FUNCTION, 5, 5, 0.6, 50, 1, 200)
-    # show_3D_graph.show_graph_with_point(FUNCTION, x)
+    x = simulated_annealing(FUNCTION, 5, 5, 0.8, 50, 1, 200)
+    show_3D_graph.show_graph_with_point(FUNCTION, x)
     ##############################
 
 
