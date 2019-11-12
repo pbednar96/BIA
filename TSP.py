@@ -128,7 +128,7 @@ def show_final_graph(final_route, filename):
 def main():
     list_x = get_list_values(FILENAME)
     matrix = create_matrix(list_x)
-    final_list = final_population(40, 20000, matrix)
+    final_list = final_population(40, 10000, matrix)
     final_route = get_best_route_in_population(final_list, matrix)
     show_final_graph(final_route, FILENAME)
 
