@@ -3,7 +3,7 @@ import numpy as np
 
 import static_data
 import func_file
-from show_3D_graph import show_graph_with_points
+from show_3D_graph import show_graph_with_searched_point_3D
 
 DIMENSIONS = 2
 POPSIZE = 20
@@ -62,7 +62,7 @@ def mutation_pop(parents, dimension, scaling_vector):
 
 def main():
     final_points = de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
-    show_graph_with_points(FUNC, final_points)
+    show_graph_with_searched_point_3D(FUNC, final_points)
 
 
 if __name__ == "__main__":
