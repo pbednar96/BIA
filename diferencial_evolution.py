@@ -3,7 +3,7 @@ import numpy as np
 
 import static_data
 import func_file
-from show_3D_graph import show_graph_with_searched_point_3D
+import show_3D_graph
 
 DIMENSIONS = 2
 POPSIZE = 20
@@ -14,7 +14,9 @@ SCALING_VECTOR = 0.5
 CR = 0.6
 
 def de(func, dimension, popsize, generations, scaling_vector):
+    all_points = []
     population = generate_first_popilation(func, popsize, dimension)
+    all_points.append(population)
     num_generation = 0
     while generations > num_generation:
         new_population = []
@@ -36,12 +38,13 @@ def de(func, dimension, popsize, generations, scaling_vector):
                 new_population.append(child)
             else:
                 new_population.append(population[i])
-
+        all_points.append(new_population)
         population = new_population
         num_generation += 1
         print(num_generation)
         print(population)
-    return population
+
+    return population, all_points
 
 
 def generate_first_popilation(func, popSize, dimension):
@@ -61,8 +64,9 @@ def mutation_pop(parents, dimension, scaling_vector):
 
 
 def main():
-    final_points = de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
-    show_graph_with_searched_point_3D(FUNC, final_points)
+    final_points, all_points = de(FUNC, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
+    # show_3D_graph.show_graph_with_searched_point_3D(FUNC, final_points)
+    show_3D_graph.animate_in_graph_3D(FUNC, all_points)
 
 
 if __name__ == "__main__":
