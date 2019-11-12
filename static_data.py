@@ -48,6 +48,8 @@ def get_min_range(name_function):
         return SPHERE_MIN_RANGE
     elif name_function == "michalewicz":
         return MICHALEWICZ_MIN_RANGE
+    elif name_function == "rastrigin":
+        return RASTRIGIN_MIN_RANGE
     else:
         return 0
 
@@ -66,6 +68,8 @@ def get_max_range(name_function):
         return SPHERE_MAX_RANGE
     elif name_function == "michalewicz":
         return MICHALEWICZ_MAX_RANGE
+    elif name_function == "rastrigin":
+        return RASTRIGIN_MAX_RANGE
     else:
         return 0
 
@@ -84,6 +88,8 @@ def get_range(name_function):
         return SPHERE_RANGE
     elif name_function == "michalewicz":
         return MICHALEWICZ_RANGE
+    elif name_function == "rastrigin":
+        return RASTRIGIN_RANGE
     else:
         return 0
 
