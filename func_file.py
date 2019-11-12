@@ -100,6 +100,8 @@ def return_value_function(input_data,name_function):
         return sphere(input_data)
     elif name_function == "michalewicz":
         return michalewicz(input_data)
+    elif name_function == "rastrigin":
+        return rastrigin(input_data)
     else:
         return 0
 
