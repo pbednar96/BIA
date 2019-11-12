@@ -4,7 +4,7 @@ import func_file
 import random
 
 
-def simulated_annealing(name_function, mux, muy, sigma, size, iterat, temperature_0):
+def simulated_annealing(name_function, mux, muy, sigma, size, temperature_0):
     temperature_decrease = lambda temperature: temperature * 0.95
     temperature_min = 0.1
     list_points = []
@@ -15,6 +15,8 @@ def simulated_annealing(name_function, mux, muy, sigma, size, iterat, temperatur
     cord_Y = generated_y[0]
 
     while temperature_0 > temperature_min:
+        generated_x = np.random.normal(cord_X, sigma, size)
+        generated_y = np.random.normal(cord_Y, sigma, size)
         for i, j in zip(generated_x, generated_y):
             min = func_file.return_value_function([i, j], name_function)
             list_points.append([i, j, min])
@@ -29,7 +31,6 @@ def simulated_annealing(name_function, mux, muy, sigma, size, iterat, temperatur
                     cord_X = i
                     cord_Y = j
             print(temperature_0)
-            # print("Iteration n.: " + str(iterat))
             print("X: " + str(cord_X))
             print("Y: " + str(cord_Y))
             print("VALUE: " + str(tmp))
@@ -37,14 +38,10 @@ def simulated_annealing(name_function, mux, muy, sigma, size, iterat, temperatur
             temperature_0 = temperature_decrease(temperature_0)
 
     print(temperature_0)
-    #print("Iteration n.: " + str(iterat))
     print("X: " + str(cord_X))
     print("Y: " + str(cord_Y))
     print("VALUE: " + str(tmp))
     print("")
 
     return [cord_X, cord_Y, tmp]
-    # if iterat == 1:
-    #     return [cord_X, cord_Y, tmp]
-    # else:
-    #     return simulated_annealing(name_function, cord_X, cord_Y, sigma, size, iterat - 1, temperature_0)
+
