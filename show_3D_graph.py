@@ -2,11 +2,10 @@
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-import time
 from matplotlib.animation import FuncAnimation
 
 
-def show_graph_with_point(name_function, point):
+def show_graph_with_searched_point_3D(name_function, point):
     # MY IMPORT
     import static_data, func_file
     range_list = np.arange(static_data.get_min_range(name_function), static_data.get_max_range(name_function),
@@ -44,7 +43,7 @@ def show_graph_with_point(name_function, point):
     plt.show()
 
 
-def show_graph_with_points(name_function, points):
+def animate_in_graph_3D(name_function, points):
     # MY IMPORT
     import static_data, func_file
     range_list = np.arange(static_data.get_min_range(name_function), static_data.get_max_range(name_function),
@@ -73,36 +72,24 @@ def show_graph_with_points(name_function, points):
     ax = fig.gca(projection='3d')
 
     ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
-    print(points)
-    for i in range(len(points)):
-        ax.scatter(points[i][0],points[i][1])
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
-
-    plt.show()
-
-
-def show_both_graph(name_function, list_points, points):
-    show_graph_with_point(name_function, points)
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-
-    # ax = Axes3D(fig)
-    # for i in range(len(list_points)):
-    #     ax.scatter(list_points[i][0], list_points[i][1], list_points[i][2])
 
     def animate(i):
-        if i > len(list_points):
-            pass
-        else:
-            ax.scatter(list_points[i][0], list_points[i][1], list_points[i][2])
+        ax.clear()
+
+        ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
+
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        for j in range(len(points[0])):
+            ax.scatter(points[i][j][0], points[i][j][1])
         return ax
 
-    ani = FuncAnimation(fig, animate, frames=len(list_points), interval=200)
+    ani = FuncAnimation(fig, animate, frames=len(points), interval=400, repeat=False)
+
 
     plt.show()
