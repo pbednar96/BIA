@@ -51,7 +51,7 @@ def ACO(filename, num_ants, iter, alpha, beta, evap):
     matrix = create_matrix(get_list_values(filename))
     num_cities = len(matrix[0])
     visibility = first_matrix_visibility(matrix)
-    pheromne = .1 * np.ones((num_ants, num_cities))
+    pheromne = np.ones((num_ants, num_cities))
     route = np.ones((num_ants, num_cities + 1))
     for _ in range(iter):
         route[:, 0] = 1
@@ -67,10 +67,10 @@ def ACO(filename, num_ants, iter, alpha, beta, evap):
 
                 combine_feature = np.multiply(p_feature, v_feature)
                 total = np.sum(combine_feature)
-                probs = combine_feature / total
-                cum_prob = np.cumsum(probs)
+                prob = np.cumsum(combine_feature / total)
+
                 r = random.uniform(0, 1)
-                city = np.argmax(cum_prob > r) + 1
+                city = np.argmax(prob > r) + 1
                 route[i, j + 1] = city
 
         dist_route = np.zeros((num_ants, 1))
@@ -79,12 +79,10 @@ def ACO(filename, num_ants, iter, alpha, beta, evap):
         dist_min_loc = np.argmin(dist_route)
         best_route = route[dist_min_loc, :]
         pheromne = (1 - evap) * pheromne
-        for i in range(num_ants):
-            for j in range(num_cities - 1):
-                dt = 1 / dist_route[i]
-                pheromne[int(route[i, j]) - 1, int(route[i, j + 1]) - 1] = pheromne[int(route[i, j]) - 1, int(
-                    route[i, j + 1]) - 1] + dt
-    best_route.tolist()
+        for l in range(num_ants):
+            for m in range(num_cities-1):
+                d = 1/dist_route[l]
+                pheromne[int(route[l,m]) - 1, int(route[l, m + 1]) - 1] = pheromne[int(route[l, m]) - 1, int(route[l, m + 1]) - 1] + d
     best_route = [int(x) for x in best_route]
     return best_route
 
