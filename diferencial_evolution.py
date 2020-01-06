@@ -15,7 +15,7 @@ CR = 0.6
 
 def de(func, dimension, popsize, generations, scaling_vector):
     all_points = []
-    population = generate_first_popilation(func, popsize, dimension)
+    population = generate_first_population(func, popsize, dimension)
     all_points.append(population)
     num_generation = 0
     while generations > num_generation:
@@ -47,7 +47,7 @@ def de(func, dimension, popsize, generations, scaling_vector):
     return population, all_points
 
 
-def generate_first_popilation(func, popSize, dimension):
+def generate_first_population(func, popSize, dimension):
     population = []
     for i in range(0, popSize):
         gen_point = list(np.random.uniform(static_data.get_min_range(func), static_data.get_max_range(func), dimension))
@@ -57,7 +57,6 @@ def generate_first_popilation(func, popSize, dimension):
 
 def mutation_pop(parents, dimension, scaling_vector):
     mutation_v = []
-    # print(parents)
     for j in range(0, dimension):
         mutation_v.append(parents[0][j] + scaling_vector * (parents[1][j]) - parents[2][j])
     return mutation_v
